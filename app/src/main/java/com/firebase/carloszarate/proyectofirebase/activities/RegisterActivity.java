@@ -54,26 +54,14 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 final String password = txtPassword.getText().toString().trim();
-                String email = txtEmail.getText().toString().trim();
+                final String email = txtEmail.getText().toString().trim();
                 final String user = txtUser.getText().toString().trim();
                 final String name = txtName.getText().toString().trim();
                 final String lastName = txtLastName.getText().toString().trim();
-                if(TextUtils.isEmpty(name) ){
-                    Toast.makeText(getApplicationContext(), "Por favor ingrese un Nombre", Toast.LENGTH_SHORT).show();
-                    return;
-                }
 
-                if(TextUtils.isEmpty(email)){
-                    Toast.makeText(getApplicationContext(), "Por favor ingrese un Correo", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if(TextUtils.isEmpty(password)){
-                    Toast.makeText(getApplicationContext(), "Por favor ingrese una Contraseña", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (password.length() < 6){
-                    Toast.makeText(getApplicationContext(), "Contraseña muy corta, entre minimo 6 caracteres", Toast.LENGTH_SHORT).show();
+                if(TextUtils.isEmpty(name) || TextUtils.isEmpty(email) || TextUtils.isEmpty(lastName)
+                        || TextUtils.isEmpty(user) || TextUtils.isEmpty(password)){
+                    Toast.makeText(getApplicationContext(), "Por favor llene todos los campos", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -81,23 +69,20 @@ public class RegisterActivity extends AppCompatActivity {
                         .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                Toast.makeText(RegisterActivity.this, "Registro:  " + task.isSuccessful(), Toast.LENGTH_SHORT).show();
+
                                 if(!task.isSuccessful()){
 
-                                    if (password.length() < 6) {
-                                        txtPassword.setError(getString(R.string.minimum_password));
-                                    }
-                                    if (user.isEmpty()){
-                                        txtUser.setError(getString(R.string.error_user));
-                                    }if (name.isEmpty()){
-                                        txtName.setError(getString(R.string.error_name));
-                                    }if (lastName.isEmpty()){
-                                        txtName.setError(getString(R.string.error_lastName));
+                                    if (!isEmailValid(email) && !isPasswordValid(password)) {
+                                        txtEmail.setError(getString(R.string.error_email_val));
+                                        txtPassword.setError(getString(R.string.error_passowd_num));
+                                    }else if(!isEmailValid(email)){
+                                        txtEmail.setError(getString(R.string.errorLogin_Email));
+                                    } else if (!isPasswordValid(password) ) {
+                                        txtPassword.setError(getString(R.string.errorLogin_Password));
                                     }else {
                                         progressDialog.dismiss();
                                         Toast.makeText(RegisterActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
                                     }
-
                                 }else{
                                     //Registrar usuario
                                     String user_id = firebaseAuth.getCurrentUser().getUid();
@@ -116,6 +101,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                                     startActivity(new Intent(RegisterActivity.this, MainActivity.class));
                                     progressDialog.dismiss();
+                                    Toast.makeText(RegisterActivity.this, "Registro:  " + task.isSuccessful(), Toast.LENGTH_SHORT).show();
                                     finish();
                                 }
                             }

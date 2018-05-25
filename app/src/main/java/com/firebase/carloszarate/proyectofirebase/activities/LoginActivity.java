@@ -43,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(user != null){
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
+                    Toast.makeText(getApplicationContext(), "Inicio de Session Correcto", Toast.LENGTH_SHORT).show();
                     finish();
                     return;
                 }
