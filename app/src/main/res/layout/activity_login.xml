@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.LoginActivity">
+
+    <EditText
+        android:id="@+id/editCorreo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/user"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="47dp" />
+
+    <EditText
+        android:id="@+id/editPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="@id/editCorreo"
+        app:layout_constraintTop_toBottomOf="@+id/editCorreo"
+        android:inputType="textPassword"
+        android:hint="@string/password"/>
+
+    <Button
+        android:id="@+id/botonLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="@string/buttonLogin"
+        app:layout_constraintTop_toBottomOf="@+id/editPassword"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="40dp" />
+
+    <Button
+        android:id="@+id/botonRegistrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="112dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/buttonRegister"
+        app:layout_constraintStart_toEndOf="@+id/botonLogin"
+        app:layout_constraintTop_toBottomOf="@+id/editPassword" />
+
+</android.support.constraint.ConstraintLayout>
