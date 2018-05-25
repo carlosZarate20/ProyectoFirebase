@@ -2,8 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_home"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="Home"
+        android:icon="@drawable/ic_home_black"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_location"
+        android:orderInCategory="100"
+        android:title="Localitation"
+        android:icon="@drawable/ic_location_on_black"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_favorite"
+        android:orderInCategory="100"
+        android:title="Favorite"
+        android:icon="@drawable/ic_favorite_black"
         app:showAsAction="never" />
 </menu>

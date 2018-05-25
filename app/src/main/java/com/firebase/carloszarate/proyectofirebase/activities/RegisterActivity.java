@@ -31,7 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText txtEmail;
     private EditText txtName;
     private EditText txtLastName;
-    private Button btnRegister;
+    private Button btnRegister, btnCancel;
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
 
@@ -48,6 +48,15 @@ public class RegisterActivity extends AppCompatActivity {
         txtName = (EditText) findViewById(R.id.editNombre);
         txtLastName = (EditText) findViewById(R.id.editApellido);
         btnRegister = (Button) findViewById(R.id.buttonRegister);
+        btnCancel = (Button) findViewById(R.id.btnCancel);
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override

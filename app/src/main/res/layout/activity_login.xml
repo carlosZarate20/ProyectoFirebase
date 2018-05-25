@@ -45,6 +45,7 @@
             android:hint="@string/login_password"
             android:inputType="textPassword"
             app:layout_constraintTop_toBottomOf="@+id/editCorreo"
+            android:imeOptions="actionUnspecified"
             tools:ignore="NotSibling" />
     </android.support.design.widget.TextInputLayout>
 
@@ -58,7 +59,8 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
         tools:ignore="MissingConstraints,NotSibling"
         tools:layout_editor_absoluteX="0dp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:background="#FFCA28"/>
 
     <Button
         android:id="@+id/botonRegistrar"
@@ -69,6 +71,7 @@
         app:layout_constraintTop_toBottomOf="@+id/botonLogin"
         tools:layout_editor_absoluteX="40dp"
         tools:ignore="MissingConstraints"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:background="#FFCA28"/>
 
 </android.support.constraint.ConstraintLayout>
