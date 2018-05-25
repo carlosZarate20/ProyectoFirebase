@@ -32,8 +32,8 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText txtName;
     private EditText txtLastName;
     private Button btnRegister;
-    private ProgressBar progressBar;
     private FirebaseAuth firebaseAuth;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,6 @@ public class RegisterActivity extends AppCompatActivity {
         txtName = (EditText) findViewById(R.id.editNombre);
         txtLastName = (EditText) findViewById(R.id.editApellido);
         btnRegister = (Button) findViewById(R.id.buttonRegister);
-        progressBar = (ProgressBar) findViewById(R.id.determinateBar);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,12 +58,12 @@ public class RegisterActivity extends AppCompatActivity {
                 final String user = txtUser.getText().toString().trim();
                 final String name = txtName.getText().toString().trim();
                 final String lastName = txtLastName.getText().toString().trim();
-                if(TextUtils.isEmpty(name)){
+                if(TextUtils.isEmpty(name) ){
                     Toast.makeText(getApplicationContext(), "Por favor ingrese un Nombre", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                /*if(TextUtils.isEmpty(email)){
+                if(TextUtils.isEmpty(email)){
                     Toast.makeText(getApplicationContext(), "Por favor ingrese un Correo", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -76,16 +75,15 @@ public class RegisterActivity extends AppCompatActivity {
                 if (password.length() < 6){
                     Toast.makeText(getApplicationContext(), "Contraseña muy corta, entre minimo 6 caracteres", Toast.LENGTH_SHORT).show();
                     return;
-                }*/
+                }
 
-                progressBar.setVisibility(View.VISIBLE);
                 firebaseAuth.createUserWithEmailAndPassword(email,password)
                         .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 Toast.makeText(RegisterActivity.this, "Registro:  " + task.isSuccessful(), Toast.LENGTH_SHORT).show();
-                                progressBar.setVisibility(View.GONE);
                                 if(!task.isSuccessful()){
+
                                     if (password.length() < 6) {
                                         txtPassword.setError(getString(R.string.minimum_password));
                                     }
@@ -96,9 +94,9 @@ public class RegisterActivity extends AppCompatActivity {
                                     }if (lastName.isEmpty()){
                                         txtName.setError(getString(R.string.error_lastName));
                                     }else {
+                                        progressDialog.dismiss();
                                         Toast.makeText(RegisterActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
                                     }
-
 
                                 }else{
                                     //Registrar usuario
@@ -117,19 +115,32 @@ public class RegisterActivity extends AppCompatActivity {
                                     current_user_db.setValue(newPost);
 
                                     startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                                    progressDialog.dismiss();
                                     finish();
                                 }
-
                             }
                         });
             }
         });
     }
 
+    private boolean isEmailValid(String email) {
+        return email.contains("@");
+    }
+
+    private boolean isPasswordValid(String password) {
+        return password.length() > 4;
+    }
+    private void showProcessDialog() {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Registro");
+        progressDialog.setMessage("Registrando una nueva Cuenta...");
+        progressDialog.show();
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
-        progressBar.setVisibility(View.GONE);
     }
 
 }

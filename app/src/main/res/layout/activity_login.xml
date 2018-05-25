@@ -5,46 +5,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activities.LoginActivity">
 
-    <EditText
-        android:id="@+id/editCorreo"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/user"
+        android:layout_marginTop="48dp"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="47dp" />
+        tools:layout_editor_absoluteX="0dp">
 
-    <EditText
-        android:id="@+id/editPassword"
+        <EditText
+            android:id="@+id/editCorreo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/login_email"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="47dp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInputLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="@id/editCorreo"
-        app:layout_constraintTop_toBottomOf="@+id/editCorreo"
-        android:inputType="textPassword"
-        android:hint="@string/password"/>
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+        tools:layout_editor_absoluteX="0dp"
+        tools:ignore="MissingConstraints">
+
+        <EditText
+            android:id="@+id/editPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:hint="@string/login_password"
+            android:inputType="textPassword"
+            app:layout_constraintTop_toBottomOf="@+id/editCorreo"
+            tools:ignore="NotSibling" />
+    </android.support.design.widget.TextInputLayout>
+
 
     <Button
         android:id="@+id/botonLogin"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="52dp"
         android:text="@string/buttonLogin"
-        app:layout_constraintTop_toBottomOf="@+id/editPassword"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="40dp" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
+        tools:ignore="MissingConstraints,NotSibling"
+        tools:layout_editor_absoluteX="0dp"
+        android:textStyle="bold"/>
 
     <Button
         android:id="@+id/botonRegistrar"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="112dp"
-        android:layout_marginStart="112dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="30dp"
         android:text="@string/buttonRegister"
-        app:layout_constraintStart_toEndOf="@+id/botonLogin"
-        app:layout_constraintTop_toBottomOf="@+id/editPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/botonLogin"
+        tools:layout_editor_absoluteX="40dp"
+        tools:ignore="MissingConstraints"
+        android:textStyle="bold"/>
 
 </android.support.constraint.ConstraintLayout>

@@ -53,26 +53,38 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String email = textEmail.getText().toString();
+                final String email = textEmail.getText().toString();
                 final String password = textPassword.getText().toString();
 
-                if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+                //Validacion de los campos
+                if (TextUtils.isEmpty(password) || TextUtils.isEmpty(password)) {
+                    Toast.makeText(getApplicationContext(), "Enter email address and password!", Toast.LENGTH_SHORT).show();
                     return;
-                }
 
-                if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
-                    return;
                 }
+                /*if (!TextUtils.isEmpty(password) && !isPasswordValid(password) ) {
+                    textPassword.setError(getString(R.string.errorLogin_Password));
+                    /*focusView = textPassword;
+                    cancel = true;
+                }
+                if(!isEmailValid(email)){
+                    textEmail.setError(getString(R.string.errorLogin_Email));
+                }*/
 
                 mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(!task.isSuccessful()){
-                            if (password.length() < 6) {
-                                textPassword.setError(getString(R.string.minimum_password));
+                            //Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
+
+                            if(!isEmailValid(email) && !isPasswordValid(password)){
+                                textEmail.setError(getString(R.string.errorLogin_Email));
+                                textPassword.setError(getString(R.string.errorLogin_Password));
+                            } else if(!isEmailValid(email)){
+                                textEmail.setError(getString(R.string.errorLogin_Email));
+                            } else if (!isPasswordValid(password) ) {
+                                textPassword.setError(getString(R.string.errorLogin_Password));
                             } else {
                                 Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
                             }
@@ -95,6 +107,13 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    private boolean isEmailValid(String email) {
+        return email.contains("@");
+    }
+
+    private boolean isPasswordValid(String password) {
+        return password.length() > 4;
+    }
     @Override
     protected void onStart() {
         super.onStart();

@@ -7,68 +7,102 @@
     android:layout_height="match_parent"
     tools:context=".activities.RegisterActivity">
 
-    <EditText
-        android:id="@+id/editNombre"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInputNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="30dp"
-        tools:ignore="MissingConstraints"
-        android:hint="@string/nombre"/>
-    <EditText
-        android:id="@+id/editApellido"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        app:layout_constraintTop_toBottomOf="@+id/editNombre"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp"
-        android:hint="@string/apellido"/>
-    <EditText
-        android:id="@+id/editUsuario"
-        android:layout_marginTop="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/editApellido"
-        android:hint="@string/user"/>
-    <EditText
-        android:id="@+id/editContraseña"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        app:layout_constraintTop_toBottomOf="@+id/editUsuario"
-        android:inputType="textPassword"
-        android:hint="@string/password"/>
+        tools:ignore="MissingConstraints">
 
-    <EditText
-        android:id="@+id/editEmail"
+        <EditText
+            android:id="@+id/editNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/nombre"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="30dp" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textLayoutApellido"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        app:layout_constraintTop_toBottomOf="@+id/editContraseña"
-        tools:layout_editor_absoluteX="0dp"
-        tools:ignore="MissingConstraints"
-        android:hint="@string/email"/>
+        app:layout_constraintTop_toBottomOf="@+id/textInputNombre"
+        android:layout_marginTop="20dp"
+        tools:ignore="MissingConstraints">
+        <EditText
+            android:id="@+id/editApellido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/apellido"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textLayoutUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/textLayoutApellido">
+        <EditText
+            android:id="@+id/editUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/user"
+            tools:layout_editor_absoluteX="0dp" />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textLayoutContraseña"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/textLayoutUsuario">
+        <EditText
+            android:id="@+id/editContraseña"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            tools:layout_editor_absoluteX="0dp" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textLayoutEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/textLayoutContraseña">
+        <EditText
+            android:id="@+id/editEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp" />
+    </android.support.design.widget.TextInputLayout>
+
 
     <Button
         android:id="@+id/buttonRegister"
         android:layout_width="210dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="@string/buttonRegister"
-        app:layout_constraintTop_toBottomOf="@+id/editEmail"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="52dp"
         android:inputType="textEmailAddress"
-        tools:layout_editor_absoluteX="89dp"
+        android:text="@string/buttonRegister"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textLayoutEmail"
         tools:ignore="MissingConstraints" />
 
-    <ProgressBar
-        android:id="@+id/determinateBar"
-        style="@android:style/Widget.ProgressBar.Horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:progress="25"
-        tools:layout_editor_absoluteX="177dp"
-        tools:layout_editor_absoluteY="464dp"
-        tools:ignore="MissingConstraints" />
 
 </android.support.constraint.ConstraintLayout>
